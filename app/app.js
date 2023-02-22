@@ -8,6 +8,8 @@ const app =express();
 app.set("views","./src/views");
 app.set("view engine","ejs");
 
+app.use(express.static(`${__dirname}/src/public`))
+
 const home = require("./src/routes/home");
 app.use("/",home); //use-> 미들 웨어
 
