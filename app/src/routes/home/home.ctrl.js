@@ -1,8 +1,5 @@
 
-const users ={
-    id :["kimsang", "김","이"],
-    password :["1234", "123","1234"],
-}
+const User = require("../../model/User")
 
 const output ={
 
@@ -16,21 +13,11 @@ const output ={
 };
 const process ={
     login: (req,res)=>{
-        const id =  req.body.id,
-        password = req.body.password;
-        if(users.id.includes(id)){
-          const idx= users.id.indexOf(id);
-          if(users.password[idx]===password){
-            return res.json({
-                success : true,
-            });
-          }
-        }
-        return res.json({
-            success : false,
-            msg: "싪패",
-        });
-        console.log(id,password)
+        const user = new User(req.body);
+        const response = user.login();
+        
+        return res.json(response);
+        
     },
 }
 
